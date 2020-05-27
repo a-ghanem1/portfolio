@@ -7,6 +7,7 @@ class PortfoliosController < ApplicationController
 
 	def new 
 		@portfolio_item = Portfolio.new
+		3.times { @portfolio_item.technologies.build }
 	end
 
 	def create
@@ -14,7 +15,7 @@ class PortfoliosController < ApplicationController
 
 		respond_to do |format|
 			if @portfolio_item.save
-				format.html { redirect_to @portfolio_item, notice: "Your Portfolio item created successfully." }
+				format.html { redirect_to portfolios_path, notice: "Your Portfolio item created successfully." }
 			else 
 				format.html { render :new }
 			end
@@ -27,7 +28,7 @@ class PortfoliosController < ApplicationController
 	def update
 		respond_to do |format|
 			if @portfolio_item.update(portfolio_params)
-				format.html { redirect_to @portfolio_item, notice: "Your Portfolio items updated successfully." }
+				format.html { redirect_to portfolios_path, notice: "Your Portfolio items updated successfully." }
 			else
 				format.html { render :edit }
 			end
@@ -48,6 +49,6 @@ class PortfoliosController < ApplicationController
 		end
 
 		def portfolio_params 
-			params.require(:portfolio).permit(:title, :subtitle, :body)
+			params.require(:portfolio).permit(:title, :subtitle, :body, technologies_attributes: [:name])
 		end
 end
