@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title><%= @page_title %></title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <meta name="keywords" content="<%= @seo_keywords %>">
+    <meta name="keywords" content="<%= @seo_keywords %>" />
 
     <%= stylesheet_link_tag    'blogs', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <%= login_helper %>
-    
-    <%= yield %>
+    <!-- Start of nav -->
+    <%= render 'shared/blog_nav' %>
+    <!-- End of nav -->
 
-    <%=  render "shared/nav", location: 'buttom' %>
-    
-    <%= copyright %>
+    <%= render 'shared/blog_masthead' %>
 
-    <%= source_helper %>
+    <div class="container">
+
+      <div class="row">
+
+        <%= yield %>
+
+        <%= render 'shared/blog_sidebar' %>
+      </div>
+
+        <%= render 'shared/blog_footer' %>
+
+        <%= source_helper %>
+    </div>
   </body>
 </html>
