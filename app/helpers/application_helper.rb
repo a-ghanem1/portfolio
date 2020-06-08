@@ -70,4 +70,20 @@ module ApplicationHelper
 	def alert_generator msg
 	    js add_gritter(msg, title: "Abdelrahman Gh. Portfolio", sticky: false)
 	end
+
+	def main_image(item)
+		if item.main_image.attached?
+			image_tag item.main_image, width: '100%'
+		else
+			image_tag '600x400.png', width: '100%'
+		end
+	end
+
+	def thumb_image(item)
+		if item.thumb_image.attached?
+			image_tag item.thumb_image
+		else
+			image_tag '350x200.png'
+		end
+	end
 end

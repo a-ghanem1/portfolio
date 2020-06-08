@@ -1,4 +1,7 @@
 class Portfolio < ApplicationRecord
+	has_one_attached :main_image
+	has_one_attached :thumb_image
+	
 	has_many :technologies
 	accepts_nested_attributes_for :technologies,
 								allow_destroy: true,
@@ -12,7 +15,7 @@ class Portfolio < ApplicationRecord
 		order("position ASC")
 	end
 
-	after_initialize :set_defaults
+	# after_initialize :set_defaults
 
 	def set_defaults
 		self.main_image  ||= Placeholder.image_generator(height: '600', width: '400')
